@@ -1,5 +1,6 @@
 import { Badge, Box, Image } from "@chakra-ui/core";
-import { FaStar, FaStarHalfAlt, FaRegStar } from "react-icons/fa";
+import { createRangeLite } from "../utils/createRange";
+import Rating from "./Rating";
 
 function Card({ size = "sm" }) {
 	const property = {
@@ -10,24 +11,8 @@ function Card({ size = "sm" }) {
 		title: "Modern home in city center in the heart of historic Los Angeles",
 		formattedPrice: "$1,900.00",
 		reviewCount: 34,
-		rating: 1.5,
+		rating: 2.5,
 	};
-
-	const ratingSlitted = `${property.rating}`.split(".");
-	let ratingSolid = Number(ratingSlitted[0]);
-	let ratingHalf = Number(ratingSlitted[1]);
-	ratingHalf = ratingHalf >= 5 ? ratingHalf : 0;
-
-	let ratingRemaining = [];
-	let ratingDifference = 0;
-
-	if (ratingHalf) {
-		ratingDifference = 5 - Math.round(Number(`${ratingSolid}.${ratingHalf}`));
-	} else {
-		ratingDifference = 5 - ratingSolid;
-	}
-
-	ratingRemaining = Array(ratingDifference).fill("");
 
 	const getSize = (size) => {
 		if (size === "sm") {
@@ -88,17 +73,8 @@ function Card({ size = "sm" }) {
 				</Box>
 
 				<Box d='flex' mt='2' alignItems='center'>
-					{Array(ratingSolid)
-						.fill("")
-						.map((_, i) => (
-							<FaStar key={i} color='teal' />
-						))}
+					<Rating value={property.rating} />
 
-					{ratingHalf ? <FaStarHalfAlt color='teal' /> : null}
-
-					{ratingRemaining.map((_, i) => (
-						<FaRegStar key={i} />
-					))}
 					<Box as='span' ml='2' color='gray.600' fontSize='sm'>
 						{property.reviewCount} reviews
 					</Box>

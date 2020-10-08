@@ -2,10 +2,10 @@ import Head from "next/head";
 import { Box, Flex } from "@chakra-ui/core";
 import Header from "../components/Header";
 import Card from "../components/Card";
-// import useDarkMode from "../hooks/useDarkMode";
+import { createRangeLite } from "../utils/createRange";
 
 const Home = () => {
-	// const { isDark, toggleTheme } = useDarkMode();
+	const cards = createRangeLite(12);
 
 	return (
 		<>
@@ -20,15 +20,14 @@ const Home = () => {
 				<Flex
 					wrap='wrap'
 					justifyContent='space-around'
+					alignItems='baseline'
 					flex='1'
 					overflowY='auto'
 					as='main'
 				>
-					{Array(10)
-						.fill("")
-						.map((_, index) => (
-							<Card key={index} size='sm' />
-						))}
+					{cards.map((_, index) => (
+						<Card key={index} size='sm' />
+					))}
 				</Flex>
 
 				<Box as='footer'>This is Footer</Box>
