@@ -6,7 +6,7 @@ import {
 } from "@chakra-ui/core";
 
 // import { darkTheme, lightTheme } from "../theme";
-// import useThemeMode from "../hooks/useThemeMode";
+import useThemeMode from "../hooks/useThemeMode";
 
 const ThemeProvider = ({ children, initialColorMode }) => {
 	return (

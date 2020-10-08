@@ -26,8 +26,6 @@ const Rating = ({ value: rating }) => {
 	// create Array base on the solid ratings
 	ratingSolid = createRange(ratingSolid);
 
-	console.log(ratingSolid, ratingRemaining);
-
 	return (
 		<Flex>
 			{ratingSolid.map((_, i) => (

@@ -1,8 +1,10 @@
 import { Badge, Box, Image } from "@chakra-ui/core";
-import { createRangeLite } from "../utils/createRange";
+import useThemeMode from "../hooks/useThemeMode";
 import Rating from "./Rating";
 
 function Card({ size = "sm" }) {
+	const { boxColors } = useThemeMode();
+
 	const property = {
 		imageUrl: "https://bit.ly/2Z4KKcF",
 		imageAlt: "Rear view of modern home with pool",
@@ -30,11 +32,12 @@ function Card({ size = "sm" }) {
 
 	return (
 		<Box
-			maxW={getSize(size)}
+			maxW={{ base: "100%", sm: getSize(size) }}
 			borderWidth='1px'
 			rounded='lg'
 			overflow='hidden'
 			m='1'
+			{...boxColors[2]}
 		>
 			<Image src={property.imageUrl} alt={property.imageAlt} />
 
@@ -44,7 +47,7 @@ function Card({ size = "sm" }) {
 						New
 					</Badge>
 					<Box
-						color='gray.500'
+						color='gray.400'
 						fontWeight='semibold'
 						letterSpacing='wide'
 						fontSize='xs'
@@ -67,7 +70,7 @@ function Card({ size = "sm" }) {
 
 				<Box>
 					{property.formattedPrice}
-					<Box as='span' color='gray.600' fontSize='sm'>
+					<Box as='span' color='gray.500' fontSize='sm'>
 						/ wk
 					</Box>
 				</Box>
@@ -75,7 +78,7 @@ function Card({ size = "sm" }) {
 				<Box d='flex' mt='2' alignItems='center'>
 					<Rating value={property.rating} />
 
-					<Box as='span' ml='2' color='gray.600' fontSize='sm'>
+					<Box as='span' ml='2' color='gray.500' fontSize='sm'>
 						{property.reviewCount} reviews
 					</Box>
 				</Box>
