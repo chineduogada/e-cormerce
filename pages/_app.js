@@ -1,8 +1,26 @@
-import "../styles/antd.less";
+import cookies from "next-cookies";
 
-function MyApp({ Component, pageProps }) {
-	return <Component {...pageProps} />;
+import ThemeProvider from "../context/ThemeProvider";
+
+function MyApp({ Component, pageProps, initialColorMode }) {
+	return (
+		<ThemeProvider initialColorMode={initialColorMode}>
+			<Component {...pageProps} />
+		</ThemeProvider>
+	);
 }
+
+MyApp.getInitialProps = async ({ Component, ctx }) => {
+	let pageProps = {};
+	if (Component.getInitialProps) {
+		pageProps = await Component.getInitialProps(ctx);
+	}
+	const { isDarkMode = "false" } = cookies(ctx);
+	return {
+		pageProps,
+		initialColorMode: isDarkMode === "true" ? "dark" : "light",
+	};
+};
 
 export default MyApp;
 

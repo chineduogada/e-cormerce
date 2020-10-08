@@ -1,67 +1,41 @@
-import { DatePicker } from "antd";
 import Head from "next/head";
+import { Box, Flex } from "@chakra-ui/core";
+import Header from "../components/Header";
+import Card from "../components/Card";
+// import useDarkMode from "../hooks/useDarkMode";
 
-export default function Home() {
+const Home = () => {
+	// const { isDark, toggleTheme } = useDarkMode();
+
 	return (
-		<div>
+		<>
 			<Head>
-				<title>Create Next App</title>
+				<title>e-commerce template</title>
 				<link rel='icon' href='/favicon.ico' />
 			</Head>
 
-			<main>
-				<DatePicker />
+			<Flex direction='column' height='100vh' maxWidth={900} mx='auto'>
+				<Header />
 
-				<h1>
-					Welcome to <a href='https://nextjs.org'>Next.js!</a>
-				</h1>
-
-				<p>
-					Get started by editing <code>pages/index.js</code>
-				</p>
-
-				<div>
-					<a href='https://nextjs.org/docs'>
-						<h3>Documentation &rarr;</h3>
-						<p>
-							Find in-depth information about Next.js features and API.
-						</p>
-					</a>
-
-					<a href='https://nextjs.org/learn'>
-						<h3>Learn &rarr;</h3>
-						<p>
-							Learn about Next.js in an interactive course with quizzes!
-						</p>
-					</a>
-
-					<a href='https://github.com/vercel/next.js/tree/master/examples'>
-						<h3>Examples &rarr;</h3>
-						<p>
-							Discover and deploy boilerplate example Next.js projects.
-						</p>
-					</a>
-
-					<a href='https://vercel.com/import?filter=next.js&utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app'>
-						<h3>Deploy &rarr;</h3>
-						<p>
-							Instantly deploy your Next.js site to a public URL with
-							Vercel.
-						</p>
-					</a>
-				</div>
-			</main>
-
-			<footer>
-				<a
-					href='https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app'
-					target='_blank'
-					rel='noopener noreferrer'
+				<Flex
+					wrap='wrap'
+					justifyContent='space-around'
+					flex='1'
+					overflowY='auto'
+					as='main'
 				>
-					Powered by <img src='/vercel.svg' alt='Vercel Logo' />
-				</a>
-			</footer>
-		</div>
+					{Array(10)
+						.fill("")
+						.map((_, index) => (
+							<Card key={index} size='sm' />
+						))}
+				</Flex>
+
+				<Box as='footer'>This is Footer</Box>
+			</Flex>
+		</>
 	);
-}
+};
+
+export default Home;
 
