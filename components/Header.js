@@ -7,6 +7,7 @@ import {
 	Button,
 	Icon,
 	useColorMode,
+	IconButton,
 } from "@chakra-ui/core";
 
 const MenuItems = ({ children }) => (
@@ -88,12 +89,10 @@ const Header = (props) => {
 					</Button>
 				</Box>
 
-				<Button>
-					<Icon
-						name={isDark ? "sun" : "moon"}
-						onClick={handleThemeToggle}
-					/>
-				</Button>
+				<IconButton
+					icon={isDark ? "sun" : "moon"}
+					onClick={handleThemeToggle}
+				/>
 			</Flex>
 		</Box>
 	);

@@ -1,6 +1,7 @@
 import Head from "next/head";
-import { Box, Button, Flex, Heading, Icon, Text } from "@chakra-ui/core";
+import { Box, Flex } from "@chakra-ui/core";
 import Header from "../components/Header";
+import Card from "../components/Card";
 // import useDarkMode from "../hooks/useDarkMode";
 
 const Home = () => {
@@ -16,9 +17,19 @@ const Home = () => {
 			<Flex direction='column' height='100vh' maxWidth={900} mx='auto'>
 				<Header />
 
-				<Box flex='1' overflowY='auto' as='main'>
-					This is Content
-				</Box>
+				<Flex
+					wrap='wrap'
+					justifyContent='space-around'
+					flex='1'
+					overflowY='auto'
+					as='main'
+				>
+					{Array(10)
+						.fill("")
+						.map((_, index) => (
+							<Card key={index} size='sm' />
+						))}
+				</Flex>
 
 				<Box as='footer'>This is Footer</Box>
 			</Flex>
