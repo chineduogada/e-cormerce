@@ -1,12 +1,11 @@
-import { useEffect, useState } from "react";
 import { useColorMode } from "@chakra-ui/core";
 
 const useThemeMode = () => {
-	const { colorMode: theme, toggleColorMode } = useColorMode();
+	const { colorMode: themeMode, toggleColorMode } = useColorMode();
 
-	const isLight = theme === "light";
+	const isLight = themeMode === "light";
 
-	const toggleTheme = () => {
+	const toggleThemeMode = () => {
 		toggleColorMode();
 		document.cookie = `isDarkMode=${isLight}`;
 	};
@@ -21,11 +20,11 @@ const useThemeMode = () => {
 			: { bg: "gray.700", color: "white" },
 
 		isLight
-			? { bg: "gray.200", color: "inherit" }
+			? { bg: "gray.50", color: "inherit" }
 			: { bg: "gray.900", color: "white" },
 	];
 
-	return { theme, toggleTheme, boxColors, isLight };
+	return { themeMode, toggleThemeMode, boxColors, isLight };
 };
 
 export default useThemeMode;

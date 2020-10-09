@@ -14,23 +14,24 @@ const Home = () => {
 				<link rel='icon' href='/favicon.ico' />
 			</Head>
 
-			<Flex direction='column' height='100vh' maxWidth={900} mx='auto'>
+			<Flex height='100vh' direction='column' maxWidth={900} mx='auto'>
 				<Header />
 
-				<Flex
-					wrap='wrap'
-					justifyContent='space-around'
-					alignItems='baseline'
-					flex='1'
-					overflowY='auto'
-					as='main'
-				>
-					{cards.map((_, index) => (
-						<Card key={index} size='sm' />
-					))}
-				</Flex>
+				<Flex direction='column' flex='1' overflowY='auto'>
+					<Flex
+						wrap='wrap'
+						justifyContent='space-around'
+						alignItems='baseline'
+						flex='1'
+						as='main'
+					>
+						{cards.map((_, index) => (
+							<Card key={index} size='sm' />
+						))}
+					</Flex>
 
-				<Box as='footer'>This is Footer</Box>
+					<Box as='footer'>This is Footer</Box>
+				</Flex>
 			</Flex>
 		</>
 	);

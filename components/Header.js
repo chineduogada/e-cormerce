@@ -3,6 +3,7 @@ import { Box, Heading, Flex, Text, Button, IconButton } from "@chakra-ui/core";
 import { ImMenu3, ImMenu4 } from "react-icons/im";
 
 import useThemeMode from "../hooks/useThemeMode";
+import Brand from "./Brand";
 
 const MenuItems = ({ children }) => (
 	<Text mt={{ base: 4, md: 0 }} mr={6} display='block'>
@@ -12,9 +13,9 @@ const MenuItems = ({ children }) => (
 
 const Header = (props) => {
 	const [show, setShow] = React.useState(false);
-	const { toggleTheme, isLight, boxColors } = useThemeMode();
+	const { toggleThemeMode, isLight, boxColors } = useThemeMode();
 
-	const handleToggle = () => setShow(!show);
+	const handleToggleMenu = () => setShow(!show);
 
 	return (
 		<Box as='header'>
@@ -23,15 +24,20 @@ const Header = (props) => {
 				align='center'
 				justify='space-between'
 				wrap='wrap'
-				padding='1.5rem'
+				padding='2'
 				{...boxColors[0]}
 				{...props}
 			>
-				<Flex align='center' mr={5} flex='1'>
-					<Heading as='h1'>e-commerce</Heading>
-				</Flex>
+				<Box mr={5} w='fit-content' flex='1'>
+					<Heading as='h1'>
+						<Brand />
+					</Heading>
+				</Box>
 
-				<Box display={{ base: "block", md: "none" }} onClick={handleToggle}>
+				<Box
+					display={{ base: "block", md: "none" }}
+					onClick={handleToggleMenu}
+				>
 					<Button>
 						{show ? <ImMenu4 size='25' /> : <ImMenu3 size='25' />}
 					</Button>
@@ -57,7 +63,10 @@ const Header = (props) => {
 					</Button>
 				</Box>
 
-				<IconButton icon={isLight ? "moon" : "sun"} onClick={toggleTheme} />
+				<IconButton
+					icon={isLight ? "moon" : "sun"}
+					onClick={toggleThemeMode}
+				/>
 			</Flex>
 		</Box>
 	);
