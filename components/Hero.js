@@ -8,7 +8,7 @@ const Hero = () => {
 			width="auto"
 			rounded='sm'
 			overflow='hidden'
-			height={{ base: "200px", sm: "300px", md: "350px"}}
+			height={{ base: "200px", sm: "300px", md: "450px"}}
 		>
 			<Image src="/img/1.jpg" alt="Rear view of modern home with pool" />
       </Box>
@@ -17,7 +17,7 @@ const Hero = () => {
 			borderWidth='1px'
 			rounded='sm'
 			overflow='hidden'
-			height={{ base: "200px", sm: "300px", md: "350px"}}
+			height={{ base: "200px", sm: "300px", md: "450px"}}
 		>
 			<Image src="/img/2.jpg" alt="Rear view of modern home with pool" />
       </Box>
@@ -26,7 +26,7 @@ const Hero = () => {
 			borderWidth='1px'
 			rounded='sm'
 			overflow='hidden'
-			height={{ base: "200px", sm: "300px", md: "350px"}}
+			height={{ base: "200px", sm: "300px", md: "450px"}}
 		>
 			<Image src="/img/3.jpg" alt="Rear view of modern home with pool" />
       </Box>
@@ -35,6 +35,7 @@ const Hero = () => {
 }
 
 export default Hero;
+
 
 
 
