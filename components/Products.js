@@ -1,4 +1,3 @@
-import React from "react";
 import { Slider } from "react-rapid-carousel";
 
 import Card from "./Card";
@@ -42,6 +41,7 @@ const Products = ({ data, lg }) => {
 };
 
 export default Products;
+
 
 
 

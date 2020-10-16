@@ -3,6 +3,7 @@ import { Box, Flex } from "@chakra-ui/core";
 import Header from "../components/Header";
 import { createRangeLite } from "../utils/createRange";
 import Products from "../components/Products";
+import Hero from "../components/Hero";
 
 const Home = () => {
 	const cards = createRangeLite(12);
@@ -18,11 +19,14 @@ const Home = () => {
 				<Header />
 
 				<Flex direction='column' flex='1' overflowY='auto'>
+					
 					<Box
 						flex='1'
 						as='main'
 					>
+					<Hero />
 
+						
 						<Products data={cards} />
 						<br />
 						<Products data={cards} />
@@ -45,6 +49,9 @@ const Home = () => {
 };
 
 export default Home;
+
+
+
 
 
 

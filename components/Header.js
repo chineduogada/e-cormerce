@@ -1,4 +1,3 @@
-import React from "react";
 import { Box, Heading, Flex, Text, Button, IconButton } from "@chakra-ui/core";
 import { ImMenu3, ImMenu4 } from "react-icons/im";
 
@@ -73,4 +72,5 @@ const Header = (props) => {
 };
 
 export default Header;
+
 
