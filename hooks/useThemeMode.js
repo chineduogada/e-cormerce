@@ -20,7 +20,7 @@ const useThemeMode = () => {
 			: { bg: "gray.700", color: "white" },
 
 		isLight
-			? { bg: "gray.50", color: "inherit" }
+			? { bg: "transparent", color: "inherit" }
 			: { bg: "gray.900", color: "white" },
 	];
 

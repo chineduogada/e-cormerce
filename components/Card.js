@@ -1,8 +1,12 @@
-import { Badge, Box, Image } from "@chakra-ui/core";
+import { Badge, Box, Image } from "@chakra-ui/core"
+	;
+
+	import truncate from "../utils/truncate"
 import useThemeMode from "../hooks/useThemeMode";
 import Rating from "./Rating";
 
-function Card({ size = "sm" }) {
+
+function Card({ data, truncateTitle }) {
 	const { boxColors } = useThemeMode();
 
 	const property = {
@@ -13,30 +17,17 @@ function Card({ size = "sm" }) {
 		title: "Modern home in city center in the heart of historic Los Angeles",
 		formattedPrice: "$1,900.00",
 		reviewCount: 34,
-		rating: 2.5,
-	};
-
-	const getSize = (size) => {
-		if (size === "sm") {
-			size = "250px";
-		}
-		if (size === "md") {
-			size = "sm";
-		}
-		if (size === "lg") {
-			size = "md";
-		}
-
-		return size;
+		rating: 3.4,
 	};
 
 	return (
+
 		<Box
-			maxW={{ base: "100%", sm: getSize(size) }}
+			width="auto"
 			borderWidth='1px'
 			rounded='lg'
 			overflow='hidden'
-			m='1'
+			m='2px'
 			{...boxColors[2]}
 		>
 			<Image src={property.imageUrl} alt={property.imageAlt} />
@@ -63,9 +54,8 @@ function Card({ size = "sm" }) {
 					fontWeight='semibold'
 					as='h4'
 					lineHeight='tight'
-					isTruncated
 				>
-					{property.title}
+					{truncateTitle ? truncate(property.title, 35) : property.title}
 				</Box>
 
 				<Box>
@@ -76,7 +66,9 @@ function Card({ size = "sm" }) {
 				</Box>
 
 				<Box d='flex' mt='2' alignItems='center'>
+					<Box  display={{base: truncateTitle && "none", sm:  "block"}}>
 					<Rating value={property.rating} />
+					</Box>
 
 					<Box as='span' ml='2' color='gray.500' fontSize='sm'>
 						{property.reviewCount} reviews
@@ -88,4 +80,54 @@ function Card({ size = "sm" }) {
 }
 
 export default Card;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

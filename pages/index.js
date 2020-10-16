@@ -1,8 +1,8 @@
 import Head from "next/head";
 import { Box, Flex } from "@chakra-ui/core";
 import Header from "../components/Header";
-import Card from "../components/Card";
 import { createRangeLite } from "../utils/createRange";
+import Products from "../components/Products";
 
 const Home = () => {
 	const cards = createRangeLite(12);
@@ -14,21 +14,28 @@ const Home = () => {
 				<link rel='icon' href='/favicon.ico' />
 			</Head>
 
-			<Flex height='100vh' direction='column' maxWidth={900} mx='auto'>
+			<Flex height='100vh' direction='column' maxWidth={1024} mx='auto'>
 				<Header />
 
 				<Flex direction='column' flex='1' overflowY='auto'>
-					<Flex
-						wrap='wrap'
-						justifyContent='space-around'
-						alignItems='baseline'
+					<Box
 						flex='1'
 						as='main'
 					>
-						{cards.map((_, index) => (
-							<Card key={index} size='sm' />
-						))}
-					</Flex>
+
+						<Products data={cards} />
+						<br />
+						<Products data={cards} />
+						<br />
+						<Products data={cards} />
+						<br />
+						<Products data={cards} />
+						<br />
+						<br />
+						<br />
+						<Products data={cards} lg />
+
+					</Box>
 
 					<Box as='footer'>This is Footer</Box>
 				</Flex>
@@ -38,4 +45,12 @@ const Home = () => {
 };
 
 export default Home;
+
+
+
+
+
+
+
+
 
