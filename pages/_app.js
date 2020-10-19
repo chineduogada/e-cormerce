@@ -1,4 +1,5 @@
 import cookies from "next-cookies";
+// import "react-rapid-carousel/dist/index.css";
 
 import ThemeProvider from "../context/ThemeProvider";
 

@@ -1,11 +1,12 @@
 import Head from "next/head";
 import { Box, Flex } from "@chakra-ui/core";
 import Header from "../components/Header";
-import Card from "../components/Card";
-// import useDarkMode from "../hooks/useDarkMode";
+import { createRangeLite } from "../utils/createRange";
+import Products from "../components/Products";
+import Hero from "../components/Hero";
 
 const Home = () => {
-	// const { isDark, toggleTheme } = useDarkMode();
+	const cards = createRangeLite(12);
 
 	return (
 		<>
@@ -14,28 +15,49 @@ const Home = () => {
 				<link rel='icon' href='/favicon.ico' />
 			</Head>
 
-			<Flex direction='column' height='100vh' maxWidth={900} mx='auto'>
+			<Flex height='100vh' direction='column' maxWidth={1024} mx='auto'>
 				<Header />
 
-				<Flex
-					wrap='wrap'
-					justifyContent='space-around'
-					flex='1'
-					overflowY='auto'
-					as='main'
-				>
-					{Array(10)
-						.fill("")
-						.map((_, index) => (
-							<Card key={index} size='sm' />
-						))}
-				</Flex>
+				<Flex direction='column' flex='1' overflowY='auto'>
+					
+					<Box
+						flex='1'
+						as='main'
+					>
+					<Hero />
 
-				<Box as='footer'>This is Footer</Box>
+						
+						<Products data={cards} />
+						<br />
+						<Products data={cards} />
+						<br />
+						<Products data={cards} />
+						<br />
+						<Products data={cards} />
+						<br />
+						<br />
+						<br />
+						<Products data={cards} lg />
+
+					</Box>
+
+					<Box as='footer'>This is Footer</Box>
+				</Flex>
 			</Flex>
 		</>
 	);
 };
 
 export default Home;
+
+
+
+
+
+
+
+
+
+
+
 

@@ -1,14 +1,8 @@
-import React from "react";
-import {
-	Box,
-	Heading,
-	Flex,
-	Text,
-	Button,
-	Icon,
-	useColorMode,
-	IconButton,
-} from "@chakra-ui/core";
+import { Box, Heading, Flex, Text, Button, IconButton } from "@chakra-ui/core";
+import { ImMenu3, ImMenu4 } from "react-icons/im";
+
+import useThemeMode from "../hooks/useThemeMode";
+import Brand from "./Brand";
 
 const MenuItems = ({ children }) => (
 	<Text mt={{ base: 4, md: 0 }} mr={6} display='block'>
@@ -18,27 +12,9 @@ const MenuItems = ({ children }) => (
 
 const Header = (props) => {
 	const [show, setShow] = React.useState(false);
+	const { toggleThemeMode, isLight, boxColors } = useThemeMode();
 
-	const { colorMode, toggleColorMode } = useColorMode();
-
-	const handleThemeToggle = () => {
-		toggleColorMode();
-		document.cookie = `isDarkMode=${colorMode === "light"}`;
-	};
-
-	const isDark = colorMode === "dark";
-
-	const boxColors = [
-		isDark
-			? { bg: "gray.600", color: "white" }
-			: { bg: "gray.200", color: "inherit" },
-
-		isDark
-			? { bg: "gray.700", color: "white" }
-			: { bg: "gray.300", color: "inherit" },
-	];
-
-	const handleToggle = () => setShow(!show);
+	const handleToggleMenu = () => setShow(!show);
 
 	return (
 		<Box as='header'>
@@ -47,31 +23,28 @@ const Header = (props) => {
 				align='center'
 				justify='space-between'
 				wrap='wrap'
-				padding='1.5rem'
+				padding='2'
 				{...boxColors[0]}
 				{...props}
 			>
-				<Flex align='center' mr={5} flex='1'>
-					<Heading as='h1'>e-commerce</Heading>
-				</Flex>
+				<Box mr={5} w='fit-content' flex='1'>
+					<Heading as='h1'>
+						<Brand />
+					</Heading>
+				</Box>
 
-				<Box display={{ sm: "block", md: "none" }} onClick={handleToggle}>
+				<Box
+					display={{ base: "block", md: "none" }}
+					onClick={handleToggleMenu}
+				>
 					<Button>
-						<svg
-							fill='white'
-							width='12px'
-							viewBox='0 0 20 20'
-							xmlns='http://www.w3.org/2000/svg'
-						>
-							<title>Menu</title>
-							<path d='M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z' />
-						</svg>
+						{show ? <ImMenu4 size='25' /> : <ImMenu3 size='25' />}
 					</Button>
 				</Box>
 
 				<Box
-					display={{ sm: show ? "block" : "none", md: "flex" }}
-					width={{ sm: "full", md: "auto" }}
+					display={{ base: show ? "block" : "none", md: "flex" }}
+					width={{ base: "full", md: "auto" }}
 					alignItems='center'
 					flexGrow={1}
 				>
@@ -81,7 +54,7 @@ const Header = (props) => {
 				</Box>
 
 				<Box
-					display={{ sm: show ? "block" : "none", md: "block" }}
+					display={{ base: show ? "block" : "none", md: "block" }}
 					mt={{ base: 4, md: 0 }}
 				>
 					<Button bg='transparent' border='1px'>
@@ -90,8 +63,8 @@ const Header = (props) => {
 				</Box>
 
 				<IconButton
-					icon={isDark ? "sun" : "moon"}
-					onClick={handleThemeToggle}
+					icon={isLight ? "moon" : "sun"}
+					onClick={toggleThemeMode}
 				/>
 			</Flex>
 		</Box>
@@ -99,4 +72,5 @@ const Header = (props) => {
 };
 
 export default Header;
+
 

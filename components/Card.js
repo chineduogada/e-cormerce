@@ -1,6 +1,14 @@
-import { Badge, Box, Image } from "@chakra-ui/core";
+import { Badge, Box, Image } from "@chakra-ui/core"
+	;
 
-function Card({ size = "sm" }) {
+	import truncate from "../utils/truncate"
+import useThemeMode from "../hooks/useThemeMode";
+import Rating from "./Rating";
+
+
+function Card({ data, truncateTitle }) {
+	const { boxColors } = useThemeMode();
+
 	const property = {
 		imageUrl: "https://bit.ly/2Z4KKcF",
 		imageAlt: "Rear view of modern home with pool",
@@ -9,30 +17,18 @@ function Card({ size = "sm" }) {
 		title: "Modern home in city center in the heart of historic Los Angeles",
 		formattedPrice: "$1,900.00",
 		reviewCount: 34,
-		rating: 4,
-	};
-
-	const getSize = (size) => {
-		if (size === "sm") {
-			size = "250px";
-		}
-		if (size === "md") {
-			size = "sm";
-		}
-		if (size === "lg") {
-			size = "md";
-		}
-
-		return size;
+		rating: 3.4,
 	};
 
 	return (
+
 		<Box
-			maxW={getSize(size)}
+			width="auto"
 			borderWidth='1px'
 			rounded='lg'
 			overflow='hidden'
-			m='1'
+			m='2px'
+			{...boxColors[2]}
 		>
 			<Image src={property.imageUrl} alt={property.imageAlt} />
 
@@ -42,7 +38,7 @@ function Card({ size = "sm" }) {
 						New
 					</Badge>
 					<Box
-						color='gray.500'
+						color='gray.400'
 						fontWeight='semibold'
 						letterSpacing='wide'
 						fontSize='xs'
@@ -58,28 +54,23 @@ function Card({ size = "sm" }) {
 					fontWeight='semibold'
 					as='h4'
 					lineHeight='tight'
-					isTruncated
 				>
-					{property.title}
+					{truncateTitle ? truncate(property.title, 35) : property.title}
 				</Box>
 
 				<Box>
 					{property.formattedPrice}
-					<Box as='span' color='gray.600' fontSize='sm'>
+					<Box as='span' color='gray.500' fontSize='sm'>
 						/ wk
 					</Box>
 				</Box>
 
 				<Box d='flex' mt='2' alignItems='center'>
-					{/* {Array(5)
-						.fill("")
-						.map((_, i) => (
-							<StarIcon
-								key={i}
-								color={i < property.rating ? "teal.500" : "gray.300"}
-							/>
-						))} */}
-					<Box as='span' ml='2' color='gray.600' fontSize='sm'>
+					<Box  display={{base: truncateTitle && "none", sm:  "block"}}>
+					<Rating value={property.rating} />
+					</Box>
+
+					<Box as='span' ml='2' color='gray.500' fontSize='sm'>
 						{property.reviewCount} reviews
 					</Box>
 				</Box>
@@ -89,4 +80,54 @@ function Card({ size = "sm" }) {
 }
 
 export default Card;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

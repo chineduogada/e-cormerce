@@ -1,23 +1,30 @@
-import { useEffect, useState } from "react";
 import { useColorMode } from "@chakra-ui/core";
 
 const useThemeMode = () => {
-	const { colorMode, toggleColorMode } = useColorMode();
-	const [theme, setTheme] = useState("dark");
+	const { colorMode: themeMode, toggleColorMode } = useColorMode();
 
-	const toggleTheme = () => {
+	const isLight = themeMode === "light";
+
+	const toggleThemeMode = () => {
 		toggleColorMode();
+		document.cookie = `isDarkMode=${isLight}`;
 	};
 
-	useEffect(() => {
-		const isDark = colorMode === "dark" ? true : false;
+	const boxColors = [
+		isLight
+			? { bg: "gray.50", color: "inherit" }
+			: { bg: "gray.600", color: "white" },
 
-		const mode = isDark ? "dark" : "light";
+		isLight
+			? { bg: "gray.100", color: "inherit" }
+			: { bg: "gray.700", color: "white" },
 
-		setTheme(mode);
-	}, [colorMode]);
+		isLight
+			? { bg: "transparent", color: "inherit" }
+			: { bg: "gray.900", color: "white" },
+	];
 
-	return { theme, toggleTheme };
+	return { themeMode, toggleThemeMode, boxColors, isLight };
 };
 
 export default useThemeMode;
